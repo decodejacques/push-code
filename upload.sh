@@ -12,7 +12,7 @@ if [ ! -f ~/decode/username.txt ]; then
 fi
 
 username_d=`cat ~/decode/username.txt`
-username="$(echo -e "${username_d}" | tr -d '[:space:]')"
+username="$(echo -e "${username_d}" | tr -cd '[:alpha:]')"
 
 echo "your username: $username"
 $com -ardtv ~/decode --exclude 'node_modules/' --exclude '*flv' --exclude upload.sh --exclude username.txt --exclude .git --exclude rsync.exe rsync://165.227.37.255:12000/files/$username
