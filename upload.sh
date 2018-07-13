@@ -6,14 +6,13 @@ case "${unameOut}" in
 esac
 echo ${machine}
 
-if [ ! -f username.txt ]; then
+if [ ! -f ~/decode/username.txt ]; then
     read -p "Write your name without uppercase: "
-    echo "$REPLY" > username.txt
+    echo "$REPLY" > ~/decode/username.txt
 fi
 
-username_d=`cat username.txt`
+username_d=`cat ~/decode/username.txt`
 username="$(echo -e "${username_d}" | tr -d '[:space:]')"
 
-echo "$username"
-echo "password is decode"
-$com -arv . --exclude 'node_modules/' --exclude upload.sh --exclude username.txt --exclude .git --exclude rsync.exe decode@165.227.37.255:~/$username
+echo "your username: $username"
+$com -ardtv ~/decode --exclude 'node_modules/' --exclude '*flv' --exclude upload.sh --exclude username.txt --exclude .git --exclude rsync.exe rsync://165.227.37.255:12000/files/$username
